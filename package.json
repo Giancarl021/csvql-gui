@@ -1,0 +1,17 @@
+{
+  "name": "csvql-gui",
+  "version": "0.1.0",
+  "description": "A GUI for csvql",
+  "main": "index.js",
+  "repository": "https://github.com/Giancarl021/csvql-gui.git",
+  "author": "Giancarlo Fontela da Luz <gian.f.luz@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "csvql": "^0.1.0",
+    "electron": "^11.0.1",
+    "electron-json-storage": "^4.3.0"
+  }
+}
