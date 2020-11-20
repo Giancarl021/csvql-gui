@@ -7,7 +7,8 @@ module.exports = function () {
         minWidth: 800,
         minHeight: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false
         }
     });
 

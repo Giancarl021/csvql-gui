@@ -17,6 +17,7 @@ function codeMirror() {
 
     const table = document.getElementById('result-table');
     const btnExec = document.getElementById('btn-exec');
+    const btnClear = document.getElementById('btn-clear');
     const historyPanel = document.getElementById('history-panel');
     const historyTable = historyPanel.querySelector('#history-table');
     const history = [];
@@ -24,10 +25,20 @@ function codeMirror() {
     cm.on('change', () => {
         if (!cm.getValue()) {
             btnExec.disabled = true;
+            btnClear.disabled = true;
         } else {
             btnExec.disabled = false;
+            btnClear.disabled = false;
         }
     });
+
+    fn.importFiles = () => {
+        ipcRenderer.invoke('dialog.import').then(data => {
+            if(data.error) {
+                fn.fireError(data.error);
+            }
+        });
+    }
 
     fn.clear = () => cm.setValue('');
 
@@ -49,7 +60,7 @@ function codeMirror() {
 
     fn.showHistory = () => {
         cm.display.input.blur()
-        historyTable.querySelector('tbody').innerHTML = history.map(formatHistory).join('');
+        historyTable.querySelector('tbody').innerHTML = history.length ? history.map(formatHistory).join('') : `<tr><td colspan="3" style="text-align: center">Histórico vazio</td></tr>`;
 
         function formatHistory(record) {
             return `

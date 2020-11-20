@@ -52,9 +52,6 @@ function dragFile(panelElement) {
 
 function tableView(panelElement) {
     ipcRenderer.on('csvql.update', (_, tables) => {
-
-        console.log(tables);
-
         panelElement.querySelector('.menu-list').innerHTML = tables.map(formatTable).join('');
         return true;
     });

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self';"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- LIBS -->
     <link rel="stylesheet" href="libs/bulma.min.css">
@@ -36,7 +37,7 @@
                 </div>
             </div>
         </section>
-        <button class="button is-fullwidth is-light" id="btn-import" onclick="">Import</button>
+        <button class="button is-fullwidth is-light" id="btn-import" onclick="fn.importFiles()">Import</button>
         <section id="table-scroll">
             <aside class="menu" id="table-view">
                 <p class="menu-label">Tables</p>
@@ -47,7 +48,7 @@
     </section>
     <main id="content">
         <nav id="actions" class="level is-mobile">
-            <button class="button level-item is-warning" onclick="fn.clear()">Clear</button>
+            <button class="button level-item is-warning" id="btn-clear" onclick="fn.clear()" disabled>Clear</button>
             <button class="button level-item is-primary" onclick="fn.showHistory()">History</button>
             <button class="button level-item is-success" id="btn-exec" onclick="fn.exec()" disabled>Execute</button>
         </nav>
@@ -67,7 +68,8 @@
                     <th>Successful</th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+            </tbody>
         </table>
         <button class="button is-danger" onclick="fn.hideHistory()">Close</button>
     </div>

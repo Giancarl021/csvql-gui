@@ -1,11 +1,14 @@
-const { ipcMain } = require('electron');
+const {
+    ipcMain,
+    dialog
+} = require('electron');
 const initCsvql = require('./csvql');
 
 module.exports = async function () {
     const csvql = await initCsvql();
 
     ipcMain.handle('csvql.init', async event => {
-        await tableUpdater(event);
+        await _tableUpdater(event);
     });
 
     ipcMain.handle('csvql.exec', async (_, query) => {
@@ -27,7 +30,29 @@ module.exports = async function () {
         return result;
     });
 
-    ipcMain.handle('csvql.import', async (event, files) => {
+    ipcMain.handle('csvql.import', _importTables);
+
+    ipcMain.handle('dialog.import', async event => {
+        const { filePaths: files } = await dialog.showOpenDialog({
+            title: 'Import CSV',
+            filters: [{
+                name: '',
+                extensions: ['csv']
+            }],
+            properties: [ 'multiSelections', 'openFile' ]
+        });
+
+        return await _importTables(event, files);
+    });
+
+    return csvql.close;
+
+
+    async function _tableUpdater(event) {
+        event.sender.send('csvql.update', await csvql.schema('list'));
+    }
+
+    async function _importTables(event, files) {
         let result;
         try {
             result = await csvql.schema('import', files);
@@ -36,14 +61,7 @@ module.exports = async function () {
                 error: err.message
             };
         }
-        tableUpdater(event);
+        _tableUpdater(event);
         return result;
-    });
-
-    async function tableUpdater(event) {
-        event.sender.send('csvql.update', await csvql.schema('list'));
     }
-
-
-    return csvql.close;
 }
