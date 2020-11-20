@@ -16,7 +16,7 @@ function dragFile(panelElement) {
         }
 
         ipcRenderer.invoke('csvql.import', files).then(data => {
-            if(data.error) {
+            if(data && data.error) {
                 fn.fireError(data.error);
             }
         });

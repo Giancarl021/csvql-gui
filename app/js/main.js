@@ -34,7 +34,7 @@ function codeMirror() {
 
     fn.importFiles = () => {
         ipcRenderer.invoke('dialog.import').then(data => {
-            if(data.error) {
+            if(data && data.error) {
                 fn.fireError(data.error);
             }
         });

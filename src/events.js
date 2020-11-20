@@ -33,7 +33,7 @@ module.exports = async function () {
     ipcMain.handle('csvql.import', _importTables);
 
     ipcMain.handle('dialog.import', async event => {
-        const { filePaths: files } = await dialog.showOpenDialog({
+        const { filePaths: files, canceled } = await dialog.showOpenDialog({
             title: 'Import CSV',
             filters: [{
                 name: '',
@@ -42,11 +42,14 @@ module.exports = async function () {
             properties: [ 'multiSelections', 'openFile' ]
         });
 
+        if (canceled) {
+            return null;
+        }
+
         return await _importTables(event, files);
     });
 
     return csvql.close;
-
 
     async function _tableUpdater(event) {
         event.sender.send('csvql.update', await csvql.schema('list'));
