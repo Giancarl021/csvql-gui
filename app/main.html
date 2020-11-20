@@ -23,20 +23,59 @@
 </head>
 
 <body>
-    <section id="panel"></section>
+    <section id="panel">
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        CSVQL
+                    </h1>
+                    <h2 class="subtitle">
+                        CSV as simple as SQL.
+                    </h2>
+                </div>
+            </div>
+        </section>
+        <button class="button is-fullwidth is-light" id="btn-import" onclick="">Import</button>
+        <section class="section" id="table-view"></section>
+    </section>
     <main id="content">
         <nav id="actions" class="level is-mobile">
-            <button class="button level-item is-warning">Limpar</button>
-            <button class="button level-item is-primary">Histórico</button>
-            <button class="button level-item is-success">Executar</button>
+            <button class="button level-item is-warning" onclick="fn.clear()">Clear</button>
+            <button class="button level-item is-primary" onclick="fn.showHistory()">History</button>
+            <button class="button level-item is-success" id="btn-exec" onclick="fn.exec()" disabled>Execute</button>
         </nav>
         <textarea id="sql-panel"></textarea>
-        <div id="sql-result"></div>
+        <div id="sql-result">
+            <table class="table" id="result-table"></table>
+        </div>
     </main>
 
+    <!-- MODAL'S -->
+    <div id="history-panel" class="section" style="opacity: 0">
+        <table class="table" id="history-table">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Query</th>
+                    <th>Successful</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button class="button is-danger" onclick="fn.hideHistory()">Close</button>
+    </div>
     <div id="drag-panel" style="opacity: 0">
         Drop the files here
     </div>
+    <article class="message is-danger" id="error-panel" style="opacity: 0">
+        <div class="message-header">
+          <p>Error</p>
+        </div>
+        <div class="message-body">
+
+        </div>
+      </article>
 </body>
 
 </html>

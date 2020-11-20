@@ -1,30 +1,12 @@
-const {
-    app,
-    BrowserWindow
-} = require('electron');
+const { app, BrowserWindow } = require('electron');
 
-const initCsvql = require('./src/csvql');
-
-function createWindow() {
-    const win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    });
-
-    // win.removeMenu();
-
-    win.loadFile('app/main.html');
-    win.webContents.openDevTools();
-}
-
-app.whenReady().then(createWindow);
+const handleEvents = require('./src/events');
+const createWindow = require('./src/create-window');
+let closer;
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-        app.quit();
+        closer().then(() => app.quit());
     }
 });
 
@@ -33,3 +15,12 @@ app.on('activate', () => {
         createWindow();
     }
 });
+
+
+async function main () {
+    closer = await handleEvents();
+    await app.whenReady();
+    createWindow()
+}
+
+main().catch(console.error);

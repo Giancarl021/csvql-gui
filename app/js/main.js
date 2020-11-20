@@ -1,20 +1,129 @@
+const fn = {};
+
 function codeMirror() {
     const element = document.getElementById('sql-panel');
-    CodeMirror.fromTextArea(element, {
+    const cm = CodeMirror.fromTextArea(element, {
         indentWithTabs: true,
         smartIndent: true,
         theme: 'dracula',
         lineNumbers: true,
-        matchBrackets : true,
+        matchBrackets: true,
         autofocus: true,
         dragDrop: false,
         extraKeys: {
             'Ctrl-Space': 'autocomplete'
         }
     });
+
+    const table = document.getElementById('result-table');
+    const btnExec = document.getElementById('btn-exec');
+    const historyPanel = document.getElementById('history-panel');
+    const historyTable = historyPanel.querySelector('#history-table');
+    const history = [];
+
+    cm.on('change', () => {
+        if (!cm.getValue()) {
+            btnExec.disabled = true;
+        } else {
+            btnExec.disabled = false;
+        }
+    });
+
+    fn.clear = () => cm.setValue('');
+
+    fn.exec = async () => {
+        const now = Date.now();
+        const selection = cm.getSelection();
+        const value = cm.getValue();
+
+        const query = ipcRenderer.invoke('csvql.exec', selection || value);
+
+        const isSuccessful = await handleQuery(query, table);
+
+        history.push({
+            timestamp: new Date(now),
+            query: selection || value,
+            isSuccessful 
+        });
+    };
+
+    fn.showHistory = () => {
+        cm.display.input.blur()
+        historyTable.querySelector('tbody').innerHTML = history.map(formatHistory).join('');
+
+        function formatHistory(record) {
+            return `
+                <tr>
+                    <td>${record.timestamp.toISOString()}</td>
+                    <td>${record.query}</td>
+                    <td>${record.isSuccessful ? 'Yes' : 'No'}</td>
+                </tr>
+            `;
+        }
+        historyPanel.style.opacity = 1;
+        historyPanel.style.pointerEvents = 'all';
+    }
+
+    fn.hideHistory = () => {
+        historyPanel.style.opacity = 0;
+        historyPanel.style.pointerEvents = 'none';
+    }
+}
+
+async function handleQuery(promise, tableElement) {
+    const result = await promise;
+
+    if (result.error) {
+        tableElement.innerHTML = `
+        <thead>
+            <tr>
+                <th>Error</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>${result.error}</td>
+            </tr>
+        </tbody>
+        `;
+    } else {
+        const headers = Object.keys(result[0]);
+
+        tableElement.innerHTML = `
+        <thead>
+            <tr>
+                ${headers.map(header => `<th>${header}</th>`).join('')}
+            </tr>
+        </thead>
+        <tbody>
+            ${result.map(parseRow(headers)).join('')}
+        </tbody>
+        `;
+    }
+
+    return result.error ? false : true;
+
+    function parseRow(headers) {
+        return row => {
+            let str = '<tr>';
+            for (const header of headers) {
+                str += `<td>${row[header]}</td>`;
+            }
+
+            return str + '</tr>';
+        }
+    }
 }
 
 function init() {
+    const errorPanel = document.getElementById('error-panel');
+
+    fn.fireError = message => {
+        errorPanel.querySelector('.message-body').innerText = message;
+        errorPanel.style.opacity = 1;
+        setTimeout(() => errorPanel.style.opacity = 0, 3000);
+    };
+
     events();
     codeMirror();
 }

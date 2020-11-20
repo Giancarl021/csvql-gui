@@ -428,10 +428,10 @@ csv-parse@^4.12.0:
   resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.14.1.tgz#b6b3736508fb94682fa6d450fe1755237221d291"
   integrity sha512-4wmcO7QbWtDAncGFaBwlWFPhEN4Akr64IbM4zvDwEOFekI8blLc04Nw7XjQjtSNy+3AUAgBgtUa9nWo5Cq89Xg==
 
-csvql@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/csvql/-/csvql-0.1.0.tgz#a9bcf8ae822d24ff59c6ca01a166f82d5ac7afe8"
-  integrity sha512-VTwHiDoIUq+pnSAkD4ii3pfHCv3DA0PmZmixg7lCTXSygm4Eiy40BlBdrWYb0cyG8rVfbpC8lQqF2RiPrgujzA==
+csvql@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/csvql/-/csvql-0.1.1.tgz#953d88608c2c0251c12996f9d26bec0e8a66d7b2"
+  integrity sha512-YvMUOS0AgmoMNBqFsEG7C1WVH6tFWXjpqNnc99rEWGbcf6ZAQc98YMsWbHdiFZb/ouOIDqdown8LjHnWguKwTA==
   dependencies:
     better-sqlite3 "^7.1.1"
     csv-parse "^4.12.0"

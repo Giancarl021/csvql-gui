@@ -10,7 +10,7 @@
     "start": "electron ."
   },
   "dependencies": {
-    "csvql": "^0.1.0",
+    "csvql": "^0.1.1",
     "electron": "^11.0.1",
     "electron-json-storage": "^4.3.0"
   },

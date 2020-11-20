@@ -1,3 +1,5 @@
+const { ipcRenderer } = require('electron');
+
 function dragFile(panelElement) {
     let counter = 0;
     document.addEventListener('drop', event => {
@@ -7,9 +9,17 @@ function dragFile(panelElement) {
         counter = 0;
         hide();
 
+        const files = [];
+
         for (const f of event.dataTransfer.files) {
-            console.log('File Path of dragged files: ', f.path)
+            files.push(f.path);
         }
+
+        ipcRenderer.invoke('csvql.import', files).then(data => {
+            if(data.error) {
+                fn.fireError(data.error);
+            }
+        });
     });
 
     document.addEventListener('dragover', event => {
@@ -40,6 +50,19 @@ function dragFile(panelElement) {
     }
 }
 
+function tableView(panelElement) {
+    ipcRenderer.on('csvql.update', (_, tables) => {
+
+        tables.innerHTML = tables.map(formatTable);
+        return true;
+    });
+
+    function formatTable(table) {
+        return ``;
+    }
+}
+
 function events() {
     dragFile(document.getElementById('drag-panel'));
+    tableView(document.getElementById('table-view'));
 }
