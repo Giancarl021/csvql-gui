@@ -67,7 +67,7 @@ function tableView(panelElement) {
                 ${table.name}
             </a>
             <ul style="display: none">
-                ${table.columns.map(e => `<li><a>${e.name}: ${e.type}</a></li>`).join('')}
+                ${table.columns.map(e => `<li><a>${e.name}: <span class="type-${e.type}">${e.type}</span></a></li>`).join('')}
             </ul>
         </li>
         `;
@@ -77,4 +77,5 @@ function tableView(panelElement) {
 function events() {
     dragFile(document.getElementById('drag-panel'));
     tableView(document.getElementById('table-view'));
+    ipcRenderer.invoke('csvql.init');
 }

@@ -24,11 +24,13 @@ body {
     background-color: #5552;
     height: 100%;
     z-index: 5;
+    display: flex;
+    flex-direction: column;
 }
 
 #sql-panel {
     width: 100%;
-    flex: 1; 
+    flex: 1;
 }
 
 #sql-result {
@@ -50,14 +52,31 @@ body {
     border-radius: 0;
 }
 
+#table-scroll {
+    overflow: auto;
+    flex: 1;
+}
+
 #table-view {
     margin-top: 15px;
-    overflow: auto;
 }
 
 #table-view .menu-label {
     font-size: 1.2em;
     margin-bottom: 0;
+    padding-left: 5px;
+}
+
+.type-int {
+    color: #bd93f9;
+}
+
+.type-float {
+    color: #50fa7b;
+}
+
+.type-text {
+    color: #ff79c6;
 }
 
 #history-panel,
@@ -100,4 +119,19 @@ body {
 
 .CodeMirror-code {
     font-family: 'Consolas', monospace !important;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #0008;
 }

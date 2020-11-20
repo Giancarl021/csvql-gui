@@ -4,6 +4,10 @@ const initCsvql = require('./csvql');
 module.exports = async function () {
     const csvql = await initCsvql();
 
+    ipcMain.handle('csvql.init', async event => {
+        await tableUpdater(event);
+    });
+
     ipcMain.handle('csvql.exec', async (_, query) => {
         const pieces = query
             .replace(/\s\s+/g, ' ')
