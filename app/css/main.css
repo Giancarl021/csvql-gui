@@ -23,6 +23,7 @@ body {
     box-shadow: 0 0 15px #0002;
     background-color: #5552;
     height: 100%;
+    z-index: 5;
 }
 
 #sql-panel {
@@ -47,6 +48,16 @@ body {
 
 #btn-import {
     border-radius: 0;
+}
+
+#table-view {
+    margin-top: 15px;
+    overflow: auto;
+}
+
+#table-view .menu-label {
+    font-size: 1.2em;
+    margin-bottom: 0;
 }
 
 #history-panel,
@@ -84,11 +95,7 @@ body {
 }
 
 .CodeMirror {
-    /* resize: vertical; */
-    /* max-height: 50%; */
-    /* min-height: 30%; */
     height: 35%;
-    /* margin-bottom: 0 !important; */
 }
 
 .CodeMirror-code {

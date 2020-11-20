@@ -53,12 +53,24 @@ function dragFile(panelElement) {
 function tableView(panelElement) {
     ipcRenderer.on('csvql.update', (_, tables) => {
 
-        tables.innerHTML = tables.map(formatTable);
+        console.log(tables);
+
+        panelElement.querySelector('.menu-list').innerHTML = tables.map(formatTable).join('');
         return true;
     });
 
     function formatTable(table) {
-        return ``;
+        return `
+        <li>
+            <a  data-active="false"
+                onclick="this.parentElement.querySelector('ul').style.display = this.getAttribute('data-active') === 'true' ? 'none' : ''; this.setAttribute('data-active', this.getAttribute('data-active') === 'true' ? 'false' : 'true');">
+                ${table.name}
+            </a>
+            <ul style="display: none">
+                ${table.columns.map(e => `<li><a>${e.name}: ${e.type}</a></li>`).join('')}
+            </ul>
+        </li>
+        `;
     }
 }
 

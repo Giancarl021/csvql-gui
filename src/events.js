@@ -26,7 +26,7 @@ module.exports = async function () {
     ipcMain.handle('csvql.import', async (event, files) => {
         let result;
         try {
-            result = await csvql.schema('import', files.join(', '));
+            result = await csvql.schema('import', files);
         } catch (err) {
             return {
                 error: err.message
