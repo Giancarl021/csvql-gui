@@ -2,6 +2,10 @@ const { ipcRenderer } = require('electron');
 
 function dragFile(panelElement) {
     let counter = 0;
+
+    document.body.addEventListener('dragstart', e => e.preventDefault());
+    document.body.addEventListener('drop', e => e.preventDefault());
+
     document.addEventListener('drop', event => {
         event.preventDefault();
         event.stopPropagation();

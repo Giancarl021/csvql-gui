@@ -1,0 +1,8 @@
+{
+    "dateType": {
+        "parse": false,
+        "formatToLocale": false
+    },
+    "persistentSessions": true,
+    "diskSessions": false
+}

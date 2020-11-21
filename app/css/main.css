@@ -67,7 +67,8 @@ body {
     padding-left: 5px;
 }
 
-.type-int {
+.type-int,
+.type-number {
     color: #bd93f9;
 }
 
@@ -75,8 +76,17 @@ body {
     color: #50fa7b;
 }
 
-.type-text {
+.type-text,
+.type-date {
     color: #ff79c6;
+}
+
+.type-null {
+    color: #6272a4;
+}
+
+.type-string {
+    color: #e1e1e1;
 }
 
 #history-panel,

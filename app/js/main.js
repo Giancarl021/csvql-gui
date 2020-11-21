@@ -1,3 +1,4 @@
+const config = {};
 const fn = {};
 
 function codeMirror() {
@@ -60,7 +61,7 @@ function codeMirror() {
 
     fn.showHistory = () => {
         cm.display.input.blur()
-        historyTable.querySelector('tbody').innerHTML = history.length ? history.map(formatHistory).join('') : `<tr><td colspan="3" style="text-align: center">Histórico vazio</td></tr>`;
+        historyTable.querySelector('tbody').innerHTML = history.length ? history.map(formatHistory).join('') : `<tr><td colspan="3" style="text-align: center">Empty</td></tr>`;
 
         function formatHistory(record) {
             return `
@@ -118,15 +119,48 @@ async function handleQuery(promise, tableElement) {
         return row => {
             let str = '<tr>';
             for (const header of headers) {
-                str += `<td>${row[header]}</td>`;
+                let value = row[header];
+                const type = parseType(value);
+
+                // if (type === 'date' && config.dateType.parse) {
+                if (type === 'date' && true) {
+                // if (config.dateType.formatToLocale) {
+                if (true) {
+                        value = new Date(value).toLocaleString();
+                    } else {
+                        value = new Date(value).toISOString();
+                    }
+                }
+
+                str += `<td class="type-${type}">${value}</td>`;
             }
 
             return str + '</tr>';
+
+            function parseType(value) {
+                if (value === null || value === undefined) {
+                    return 'null';
+                } else if (!isNaN(Number(value))) {
+                    return 'number';
+                } else if (new Date(value).toString() !== "Invalid Date" && !isNaN(new Date(value))) {
+                    return 'date';
+                } else {
+                    return 'string';
+                }
+            }
         }
     }
 }
 
-function init() {
+async function getConfigs() {
+    const configs = await ipcRenderer.invoke('env.config');
+
+    for (const key in configs) {
+        config[key] = configs[key];
+    }
+}
+
+async function init() {
     const errorPanel = document.getElementById('error-panel');
 
     fn.fireError = message => {
@@ -134,6 +168,8 @@ function init() {
         errorPanel.style.opacity = 1;
         setTimeout(() => errorPanel.style.opacity = 0, 3000);
     };
+
+    // await getConfigs();
 
     events();
     codeMirror();

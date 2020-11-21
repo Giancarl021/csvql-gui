@@ -20,7 +20,7 @@ app.on('activate', () => {
 async function main () {
     closer = await handleEvents();
     await app.whenReady();
-    createWindow()
+    createWindow();
 }
 
 main().catch(console.error);
