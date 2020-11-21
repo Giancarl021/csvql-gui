@@ -1,7 +1,5 @@
-const {
-    ipcMain,
-    dialog
-} = require('electron');
+const { ipcMain, dialog, shell, app } = require('electron');
+const storage = require('./storage');
 const initCsvql = require('./csvql');
 
 module.exports = async function () {
@@ -9,6 +7,10 @@ module.exports = async function () {
 
     ipcMain.handle('csvql.init', async event => {
         await _tableUpdater(event);
+    });
+
+    ipcMain.handle('env.config', () => {
+        return storage.get('interface');
     });
 
     ipcMain.handle('csvql.exec', async (_, query) => {
@@ -47,6 +49,10 @@ module.exports = async function () {
         }
 
         return await _importTables(event, files);
+    });
+
+    ipcMain.handle('shell.config', () => {
+        shell.openPath(app.getPath('userData') + '/config.json');
     });
 
     return csvql.close;

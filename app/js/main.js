@@ -169,7 +169,11 @@ async function init() {
         setTimeout(() => errorPanel.style.opacity = 0, 3000);
     };
 
-    // await getConfigs();
+    fn.openConfigs = () => {
+        ipcRenderer.invoke('shell.config');
+    }
+
+    await getConfigs();
 
     events();
     codeMirror();

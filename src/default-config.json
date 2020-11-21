@@ -1,7 +1,9 @@
 {
-    "dateType": {
-        "parse": false,
-        "formatToLocale": false
+    "interface": {
+        "dateType": {
+            "parse": false,
+            "formatToLocale": false
+        }
     },
     "persistentSessions": true,
     "diskSessions": false
