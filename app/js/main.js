@@ -169,9 +169,13 @@ async function init() {
         setTimeout(() => errorPanel.style.opacity = 0, 3000);
     };
 
-    fn.openConfigs = () => {
-        ipcRenderer.invoke('shell.config');
-    }
+    fn.openConfigs = async () => {
+        await ipcRenderer.invoke('shell.config');
+    };
+
+    fn.resetSession = async () => {
+        await ipcRenderer.invoke('csvql.reset');
+    };
 
     await getConfigs();
 

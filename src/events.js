@@ -34,6 +34,16 @@ module.exports = async function () {
 
     ipcMain.handle('csvql.import', _importTables);
 
+    ipcMain.handle('csvql.reset', async event => {
+        const tables = (await csvql.schema('list'))
+            .map(t => t.name);
+
+        for (const table of tables) {
+            await csvql.schema('drop', table);
+        }
+        await _tableUpdater(event);
+    });
+
     ipcMain.handle('dialog.import', async event => {
         const { filePaths: files, canceled } = await dialog.showOpenDialog({
             title: 'Import CSV',

@@ -12,8 +12,7 @@ module.exports = function () {
         }
     });
 
-    // win.removeMenu();
+    win.removeMenu();
 
     win.loadFile('app/main.html');
-    win.webContents.openDevTools();
 }
