@@ -1,4 +1,5 @@
 const { BrowserWindow } = require('electron');
+const path = require('path');
 
 module.exports = function () {
     const win = new BrowserWindow({
@@ -9,7 +10,8 @@ module.exports = function () {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
-        }
+        },
+        icon: path.resolve(__dirname, '..', 'app', 'img', 'icon.png')
     });
 
     win.removeMenu();
