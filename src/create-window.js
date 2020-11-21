@@ -11,7 +11,7 @@ module.exports = function () {
             nodeIntegration: true,
             contextIsolation: false
         },
-        icon: path.resolve(__dirname, '..', 'app', 'img', 'icon.png')
+        icon: path.resolve(__dirname, '..', 'build', 'icon.png')
     });
 
     win.removeMenu();
