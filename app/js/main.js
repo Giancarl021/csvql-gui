@@ -41,7 +41,10 @@ function codeMirror() {
         });
     }
 
-    fn.clear = () => cm.setValue('');
+    fn.clear = () => {
+        cm.setValue('');
+        handleQuery(null, table);
+    }
 
     fn.exec = async () => {
         const now = Date.now();
@@ -84,6 +87,11 @@ function codeMirror() {
 
 async function handleQuery(promise, tableElement) {
     const result = await promise;
+
+    if (result === null) {
+        tableElement.innerHTML = '';
+        return true;
+    }
 
     if (result.error) {
         tableElement.innerHTML = `
@@ -175,6 +183,7 @@ async function init() {
 
     fn.resetSession = async () => {
         await ipcRenderer.invoke('csvql.reset');
+        fn.clear();
     };
 
     await getConfigs();
