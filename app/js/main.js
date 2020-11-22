@@ -106,6 +106,19 @@ async function handleQuery(promise, tableElement) {
             </tr>
         </tbody>
         `;
+    } else if (!result.length) { 
+        tableElement.innerHTML = `
+        <thead>
+            <tr>
+                <th>Empty</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Empty result</td>
+            </tr>
+        </tbody>
+        `;
     } else {
         const headers = Object.keys(result[0]);
 
