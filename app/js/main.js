@@ -181,32 +181,6 @@ async function getConfigs() {
     }
 }
 
-function setFn() {
-    const errorPanel = document.getElementById('error-panel');
-
-    fn.fireError = message => {
-        errorPanel.querySelector('.message-body').innerText = message;
-        errorPanel.style.opacity = 1;
-        setTimeout(() => errorPanel.style.opacity = 0, 3000);
-    };
-
-    fn.openConfigs = async () => {
-        await ipcRenderer.invoke('shell.config');
-    };
-
-    fn.resetSession = async () => {
-        await ipcRenderer.invoke('csvql.reset');
-        fn.clear();
-    };
-
-    fn.deleteTable = async tableName => {
-        const result = await ipcRenderer.invoke('csvql.delete', tableName);
-        if (result && result.error) {
-            fn.fireError(result.error);
-        }
-    };
-}
-
 async function init() {
     await getConfigs();
     setFn();

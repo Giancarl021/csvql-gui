@@ -673,13 +673,19 @@ csv-parse@^4.12.0:
   resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.14.1.tgz#b6b3736508fb94682fa6d450fe1755237221d291"
   integrity sha512-4wmcO7QbWtDAncGFaBwlWFPhEN4Akr64IbM4zvDwEOFekI8blLc04Nw7XjQjtSNy+3AUAgBgtUa9nWo5Cq89Xg==
 
-csvql@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/csvql/-/csvql-0.1.1.tgz#953d88608c2c0251c12996f9d26bec0e8a66d7b2"
-  integrity sha512-YvMUOS0AgmoMNBqFsEG7C1WVH6tFWXjpqNnc99rEWGbcf6ZAQc98YMsWbHdiFZb/ouOIDqdown8LjHnWguKwTA==
+csv-string@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/csv-string/-/csv-string-4.0.1.tgz#1fb4a88c869badad056d55247f57336e1e748b00"
+  integrity sha512-nCdK+EWDbqLvZ2MmVQhHTmidMEsHbK3ncgTJb4oguNRpkmH5OOr+KkDRB4nqsVrJ7oK0AdO1QEsBp0+z7KBtGQ==
+
+csvql@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/csvql/-/csvql-0.1.2.tgz#aca12fcdaf0d6793c06a1dc381f8e1d06a8c9e6e"
+  integrity sha512-PlvcNpnwKDKN+HritnkbFM6cVRYsHePRutfsK4Ax9wPvGonrcDTIRFfsOFVqRKQkTPKpzo494W0vFPhohC79fQ==
   dependencies:
     better-sqlite3 "^7.1.1"
     csv-parse "^4.12.0"
+    csv-string "^4.0.1"
     dotenv "^8.2.0"
     haikunator "^2.1.2"
     keypress "^0.2.1"

@@ -48,6 +48,20 @@ module.exports = async function () {
         return null;
     });
 
+    ipcMain.handle('csvql.rename', async (event, tableName, newName) => {
+        try {
+            csvql.schema('rename', tableName, newName);
+        } catch (err) {
+            return {
+                error: err.message
+            };
+        }
+
+        await _tableUpdater(event);
+
+        return null;
+    });
+
     ipcMain.handle('csvql.reset', async event => {
         const tables = (await csvql.schema('list'))
             .map(t => t.name);
