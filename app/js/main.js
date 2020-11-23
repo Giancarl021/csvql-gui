@@ -35,7 +35,7 @@ function codeMirror() {
 
     fn.importFiles = () => {
         ipcRenderer.invoke('dialog.import').then(data => {
-            if(data && data.error) {
+            if (data && data.error) {
                 fn.fireError(data.error);
             }
         });
@@ -58,7 +58,7 @@ function codeMirror() {
         history.push({
             timestamp: new Date(now),
             query: selection || value,
-            isSuccessful 
+            isSuccessful
         });
     };
 
@@ -106,7 +106,7 @@ async function handleQuery(promise, tableElement) {
             </tr>
         </tbody>
         `;
-    } else if (!result.length) { 
+    } else if (!result.length) {
         tableElement.innerHTML = `
         <thead>
             <tr>
@@ -143,10 +143,8 @@ async function handleQuery(promise, tableElement) {
                 let value = row[header];
                 const type = parseType(value);
 
-                // if (type === 'date' && config.dateType.parse) {
-                if (type === 'date' && true) {
-                // if (config.dateType.formatToLocale) {
-                if (true) {
+                if (type === 'date' && config.dateType.parse) {
+                    if (config.dateType.formatToLocale) {
                         value = new Date(value).toLocaleString();
                     } else {
                         value = new Date(value).toISOString();
