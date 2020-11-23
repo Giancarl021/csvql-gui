@@ -132,8 +132,6 @@ body {
 #rename-panel {
     background-color: #0006;
     z-index: 9996;
-    opacity: 1;
-    pointer-events: all;
 }
 
 #rename-panel > section > * {

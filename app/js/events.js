@@ -69,7 +69,7 @@ function tableView(panelElement) {
                     onclick="this.parentElement.parentElement.querySelector('ul').style.display = this.getAttribute('data-active') === 'true' ? 'none' : ''; this.setAttribute('data-active', this.getAttribute('data-active') === 'true' ? 'false' : 'true');">
                     ${table.name}
                 </a>
-                <button class="button is-small is-warning is-inverted btn-table" onclick="">Rename</button>
+                <button class="button is-small is-warning is-inverted btn-table" onclick="fn.showRenameModal('${table.name}')">Rename</button>
                 <button class="button is-small is-danger is-inverted btn-table" onclick="fn.deleteTable('${table.name}')">Delete</button>
             </div>
             <ul style="display: none">
