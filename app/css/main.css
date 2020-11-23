@@ -67,6 +67,23 @@ body {
     padding-left: 5px;
 }
 
+.btn-table {
+    border-radius: 0px !important;
+    border: 0 !important;
+    padding: 5px 7px !important;
+    background-color: transparent !important;
+}
+
+.btn-table:hover {
+    background-color: #282f2f !important;
+}
+
+.btn-table:focus {
+    border-radius: 0px !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
 .type-int,
 .type-number {
     color: #bd93f9;

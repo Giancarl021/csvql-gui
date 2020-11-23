@@ -34,6 +34,20 @@ module.exports = async function () {
 
     ipcMain.handle('csvql.import', _importTables);
 
+    ipcMain.handle('csvql.delete', async (event, table) => {
+        try {
+            csvql.schema('drop', table);
+        } catch (err) {
+            return {
+                error: err.message
+            };
+        }
+
+        await _tableUpdater(event);
+
+        return null;
+    });
+
     ipcMain.handle('csvql.reset', async event => {
         const tables = (await csvql.schema('list'))
             .map(t => t.name);
