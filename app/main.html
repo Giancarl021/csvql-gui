@@ -61,7 +61,7 @@
     </main>
 
     <!-- MODAL'S -->
-    <div id="history-panel" class="section" style="opacity: 0">
+    <div id="history-panel" class="section">
         <div id="history-container">
             <table class="table" id="history-table">
                 <thead>
@@ -77,10 +77,22 @@
         </div>
         <button class="button is-danger" onclick="fn.hideHistory()">Close</button>
     </div>
-    <div id="drag-panel" style="opacity: 0">
+    <div id="rename-panel">
+        <section class="section">
+            <div class="field">
+                <label class="label">Table name</label>
+                <p class="control">
+                    <input class="input" type="text" placeholder="">
+                </p>
+            </div>
+            <button class="button is-success" onclick="const i = this.parentElement.querySelector('input'); fn.renameTable(i.placeholder, i.value)">Rename</button>
+            <button class="button is-danger" onclick="fn.hideRenameModal()">Close</button>
+        </section>
+    </div>
+    <div id="drag-panel">
         Drop the files here
     </div>
-    <article class="message is-danger" id="error-panel" style="opacity: 0">
+    <article class="message is-danger" id="error-panel">
         <div class="message-header">
             <p>Error</p>
         </div>

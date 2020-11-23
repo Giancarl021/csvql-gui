@@ -29,4 +29,12 @@ function setFn() {
             fn.fireError(result.error);
         }
     };
+
+    fn.showRenameModal = originTable => {
+
+    };
+
+    fn.hideRenameModal = () => {
+        
+    };
 }

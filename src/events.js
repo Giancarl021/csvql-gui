@@ -50,7 +50,7 @@ module.exports = async function () {
 
     ipcMain.handle('csvql.rename', async (event, tableName, newName) => {
         try {
-            csvql.schema('rename', tableName, newName);
+            await csvql.schema('rename', tableName, newName);
         } catch (err) {
             return {
                 error: err.message

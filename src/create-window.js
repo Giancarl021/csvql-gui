@@ -14,7 +14,7 @@ module.exports = function () {
         icon: path.resolve(__dirname, '..', 'build', 'icon.png')
     });
 
-    win.removeMenu();
+    // win.removeMenu();
 
     win.loadFile('app/main.html');
 }
