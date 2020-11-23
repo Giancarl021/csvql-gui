@@ -61,17 +61,19 @@
 
     <!-- MODAL'S -->
     <div id="history-panel" class="section" style="opacity: 0">
-        <table class="table" id="history-table">
-            <thead>
-                <tr>
-                    <th>Timestamp</th>
-                    <th>Query</th>
-                    <th>Successful</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <div id="history-container">
+            <table class="table" id="history-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Query</th>
+                        <th>Successful</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
         <button class="button is-danger" onclick="fn.hideHistory()">Close</button>
     </div>
     <div id="drag-panel" style="opacity: 0">
@@ -81,9 +83,7 @@
         <div class="message-header">
             <p>Error</p>
         </div>
-        <div class="message-body">
-
-        </div>
+        <div class="message-body"></div>
     </article>
 </body>
 

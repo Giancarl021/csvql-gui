@@ -110,6 +110,12 @@ body {
     z-index: 9997;
 }
 
+#history-container {
+    max-height: 90%;
+    overflow: auto;
+    margin-bottom: 15px;
+}
+
 #drag-panel {
     background-color: #fff3;
     z-index: 9998;
