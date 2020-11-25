@@ -85,12 +85,18 @@
                     <input class="input" type="text" placeholder="" onkeyup="fn.validateRename(event)">
                 </p>
             </div>
-            <button id="rename-btn" class="button is-success" onclick="const i = this.parentElement.querySelector('input'); fn.renameTable(i.placeholder, i.value)" disabled>Rename</button>
+            <button id="rename-btn" class="button is-success"
+                onclick="const i = this.parentElement.querySelector('input'); fn.renameTable(i.placeholder, i.value)"
+                disabled>Rename</button>
             <button class="button is-danger" onclick="fn.hideRenameModal()">Close</button>
         </section>
     </div>
     <div id="drag-panel">
         Drop the files here
+    </div>
+    <div id="loading-panel">
+        Importing...
+        <progress class="progress is-small is-primary" max="100"></progress>
     </div>
     <article class="message is-danger" id="error-panel">
         <div class="message-header">

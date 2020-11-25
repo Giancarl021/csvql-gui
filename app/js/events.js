@@ -19,10 +19,14 @@ function dragFile(panelElement) {
             files.push(f.path);
         }
 
+        fn.showImporting();
+
         ipcRenderer.invoke('csvql.import', files).then(data => {
             if(data && data.error) {
                 fn.fireError(data.error);
             }
+
+            fn.hideImporting();
         });
     });
 

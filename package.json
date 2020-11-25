@@ -23,7 +23,7 @@
         ]
     },
     "dependencies": {
-        "csvql": "^0.1.2",
+        "csvql": "^0.1.3",
         "electron-store": "^6.0.1"
     },
     "devDependencies": {

@@ -108,7 +108,8 @@ body {
 
 #history-panel,
 #drag-panel,
-#rename-panel {
+#rename-panel,
+#loading-panel {
     position: absolute;
     display: flex;
     align-items: center;
@@ -131,7 +132,7 @@ body {
 
 #rename-panel {
     background-color: #0006;
-    z-index: 9996;
+    z-index: 9995;
 }
 
 #rename-panel > section > * {
@@ -152,6 +153,15 @@ body {
 #drag-panel {
     background-color: #fff3;
     z-index: 9998;
+}
+
+#loading-panel {
+    background-color: #0005;
+    z-index: 9996;
+}
+
+#loading-panel progress {
+    width: 80%;
 }
 
 #error-panel {

@@ -2,6 +2,7 @@ function setFn() {
     const errorPanel = document.getElementById('error-panel');
     const renamePanel = document.getElementById('rename-panel');
     const renameButton = renamePanel.querySelector('#rename-btn');
+    const importingPanel = document.getElementById('loading-panel');
 
     fn.fireError = message => {
         errorPanel.querySelector('.message-body').innerText = message;
@@ -56,4 +57,14 @@ function setFn() {
             renameButton.disabled = true;
         }
     }
+
+    fn.showImporting = () => {
+        importingPanel.style.opacity = 1;
+        importingPanel.style.pointerEvents = 'all';
+    };
+
+    fn.hideImporting = () => {
+        importingPanel.style.opacity = 0;
+        importingPanel.style.pointerEvents = 'none';
+    };
 }

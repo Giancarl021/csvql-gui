@@ -6,5 +6,6 @@
         }
     },
     "persistentSessions": true,
-    "diskSessions": false
+    "diskSessions": false,
+    "parseCommaAsDecimalOnNumbers": false
 }
