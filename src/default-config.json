@@ -3,7 +3,8 @@
         "dateType": {
             "parse": false,
             "formatToLocale": false
-        }
+        },
+        "maxRenderedRows": 100
     },
     "persistentSessions": true,
     "diskSessions": false,

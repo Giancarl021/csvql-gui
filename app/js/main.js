@@ -122,6 +122,10 @@ async function handleQuery(promise, tableElement) {
     } else {
         const headers = Object.keys(result[0]);
 
+        if (config.maxRenderedRows) {
+            result.length = config.maxRenderedRows;
+        }
+
         tableElement.innerHTML = `
         <thead>
             <tr>
