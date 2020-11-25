@@ -1,0 +1,32 @@
+html {
+    overflow: hidden;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 300px calc(100% - 300px);
+    grid-template-rows: 100%;
+    height: 100vh;
+}
+
+progress {
+    border-radius: 0px !important;
+}
+
+.hero {
+    grid-row: 1/1;
+    grid-column: 1/2;
+}
+
+main {
+    grid-row: 1/1;
+    grid-column: 2/3;
+    position: relative;
+}
+
+#close-button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-weight: 700;
+}

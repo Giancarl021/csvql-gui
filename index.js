@@ -2,6 +2,7 @@ const { app, BrowserWindow } = require('electron');
 
 const handleEvents = require('./src/events');
 const createWindow = require('./src/create-window');
+const createLoading = require('./src/create-loading');
 let closer;
 
 app.on('window-all-closed', () => {
@@ -18,9 +19,14 @@ app.on('activate', () => {
 
 
 async function main () {
-    closer = await handleEvents();
     await app.whenReady();
-    createWindow();
+    const loading = createLoading();
+
+    closer = await handleEvents();
+
+    createWindow()
+        .once('ready-to-show', () => loading.close());
+
 }
 
 main().catch(console.error);

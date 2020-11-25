@@ -3,6 +3,11 @@ const storage = require('./storage');
 const initCsvql = require('./csvql');
 
 module.exports = async function () {
+
+    ipcMain.handle('app.close', () => {
+        app.quit();
+    });
+
     const csvql = await initCsvql();
 
     ipcMain.handle('csvql.init', async event => {

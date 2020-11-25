@@ -1,22 +1,20 @@
 const { BrowserWindow } = require('electron');
-const path = require('path');
 
 module.exports = function () {
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        minWidth: 800,
-        minHeight: 600,
+        width: 500,
+        height: 300,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
         },
-        icon: path.resolve(__dirname, '..', 'build', 'icon.png')
+        frame: false,
+        resizable: false
     });
 
     win.removeMenu();
 
-    win.loadFile('app/main.html');
+    win.loadFile('app/loading.html');
 
     return win;
 }
