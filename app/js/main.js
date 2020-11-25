@@ -34,10 +34,13 @@ function codeMirror() {
     });
 
     fn.importFiles = () => {
+        fn.showImporting();
         ipcRenderer.invoke('dialog.import').then(data => {
             if (data && data.error) {
                 fn.fireError(data.error);
             }
+
+            fn.hideImporting();
         });
     }
 
