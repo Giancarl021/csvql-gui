@@ -6,9 +6,7 @@ const createLoading = require('./src/create-loading');
 let closer;
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        closer().then(() => app.quit());
-    }
+    closer().then(() => app.quit());
 });
 
 app.on('activate', () => {
@@ -18,7 +16,7 @@ app.on('activate', () => {
 });
 
 
-async function main () {
+async function main() {
     await app.whenReady();
     const loading = createLoading();
 
