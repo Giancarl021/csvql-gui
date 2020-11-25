@@ -20,6 +20,8 @@ async function main() {
     await app.whenReady();
     const loading = createLoading();
 
+    await new Promise((resolve => loading.on('ready-to-show', resolve)));
+
     closer = await handleEvents();
 
     createWindow()
